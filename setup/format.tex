@@ -2,16 +2,12 @@
 
 %========================================= Font ==========================================
 % 定义字号
-\newcommand{\yihao}{\fontsize{26pt}{26pt}\selectfont}       % 一号, 1.倍行距
-\newcommand{\xiaoyi}{\fontsize{24pt}{24pt}\selectfont}      % 小一, 1.倍行距
-\newcommand{\erhao}{\fontsize{22pt}{22pt}\selectfont}		% 二号, 1.倍行距
-\newcommand{\xiaoer}{\fontsize{18pt}{18pt}\selectfont}      % 小二, 单倍行距
-\newcommand{\sanhao}{\fontsize{16pt}{16pt}\selectfont}      % 三号, 1.倍行距
-\newcommand{\xiaosan}{\fontsize{15pt}{15pt}\selectfont}     % 小三, 1.倍行距
-\newcommand{\sihao}{\fontsize{14pt}{14pt}\selectfont}       % 四号, 1.倍行距
-\newcommand{\xiaosi}{\fontsize{12pt}{12pt}\selectfont}      % 小四, 1.倍行距
-\newcommand{\wuhao}{\fontsize{10.5pt}{10.5pt}\selectfont}   % 五号, 单倍行距
-\newcommand{\xiaowu}{\fontsize{9pt}{9pt}\selectfont}        % 小五, 单倍行距
+\newcommand{\sanhao}{\fontsize{16pt}{16pt}\selectfont}      % 三号, 1.0倍行距
+\newcommand{\xiaosan}{\fontsize{15pt}{15pt}\selectfont}     % 小三, 1.0倍行距
+\newcommand{\sihao}{\fontsize{14pt}{14pt}\selectfont}       % 四号, 1.0倍行距
+\newcommand{\xiaosi}{\fontsize{12pt}{12pt}\selectfont}      % 小四, 1.0倍行距
+\newcommand{\wuhao}{\fontsize{10.5pt}{10.5pt}\selectfont}   % 五号, 1.0倍行距
+\newcommand{\xiaowu}{\fontsize{9pt}{9pt}\selectfont}        % 小五, 1.0倍行距
 
 % 默认字体
 \makeatletter
@@ -24,6 +20,7 @@
 	\let\@listi\@listI
 }
 
+\renewcommand{\footnotesize}{\wuhao}
 % 设置行距和段落间垂直距离
 \setlength{\parindent}{2em}
 \setlength{\parskip}{3pt plus1pt minus1pt}
@@ -49,7 +46,7 @@
 % 英文目录格式定义： 细点\@dottedtocline  粗点\@dottedtoclinebold
 \renewcommand*\l@chapter{\@dottedtocline{0}{0em}{5em}}
 \renewcommand*\l@section{\@dottedtocline{1}{1em}{1.8em}}
-\renewcommand*\l@subsection{\@dottedtocline{2}{2.9em}{2.5em}}
+\renewcommand*\l@subsection{\@dottedtocline{2}{2.8em}{2.5em}}
 \def\@dotsep{0.75}           % 定义英文目录的点间距
 \setlength\leftmargini {50pt}
 \setlength\leftmarginii {50pt}
@@ -66,7 +63,7 @@
 %======================================= Chapter =========================================
 % 章节格式定义
 \renewcommand\chaptername{\thechapter}
-\CTEXsetup[name={,},number={\arabic{chapter}}]{chapter}
+\ctexset{chapter={name={,},number={\arabic{chapter}}}}
 \setcounter{secnumdepth}{4} \setcounter{tocdepth}{2}
 \titleformat{\chapter}{\center\sanhao}{\chaptertitlename}{0.8em}{}
 \titlespacing{\chapter}{0pt}{-5.3mm}{4.2mm}
@@ -112,8 +109,8 @@
 %======================================== Header =========================================
 % 定义页眉和页脚
 \newcommand{\makeheadrule}{
-\rule[6pt]{\textwidth}{0.4pt} \\[-18pt]
-\rule{\textwidth}{0.4pt}}
+\rule[6pt]{\textwidth}{0.5pt} \\[-17.5pt]
+\rule{\textwidth}{0.5pt}}
 \renewcommand{\headrule}{
     {\if@fancyplain\let\headrulewidth\plainheadrulewidth\fi
      \makeheadrule}}
@@ -145,11 +142,13 @@
 
 %========================================= FTE ===========================================
 % 图表公式的编号为1-1格式，子图编号为 (a) 的格式
+%\renewcommand{\figurename}{Figure}% 英文论文图标题以 Figure 开头
+%\renewcommand{\tablename}{Table}% 英文论文表标题以 Table 开头
 \renewcommand{\thefigure}{\arabic{chapter}-\arabic{figure}}
 \renewcommand{\thesubfigure}{(\alph{subfigure})}
 \renewcommand{\p@subfigure}{\thefigure~}
-\renewcommand{\thetable}{\arabic{chapter}-\arabic{table}}%使表编号为 7-1 的格式
-\renewcommand{\theequation}{\arabic{chapter}-\arabic{equation}}%使公式编号为 7-1 的格式
+\renewcommand{\thetable}{\arabic{chapter}-\arabic{table}}
+\renewcommand{\theequation}{\arabic{chapter}-\arabic{equation}}
 
 % 把 tabularx 宏包的列格式左对齐改成居中对齐
 \newcolumntype{Y}{>{\centering\arraybackslash}X}
@@ -173,12 +172,12 @@
 \newcommand{\iprod}[2]{\langle #1,#2 \rangle}
 
 % 调整罗列环境的布局
-\setitemize{leftmargin=3.23em,itemsep=0em,partopsep=0em,parsep=0em,topsep=-0em}
-\setenumerate{leftmargin=3.45em,itemsep=0em,partopsep=0em,parsep=0em,topsep=0em}
+\setitemize{leftmargin=3em,itemsep=0em,partopsep=0em,parsep=0em,topsep=-0em}
+\setenumerate{leftmargin=3.2em,itemsep=0em,partopsep=0em,parsep=0em,topsep=0em}
 
 % 自定义项目列表标签及格式 \begin{publist} 列表项 \end{publist}
 \newcounter{pubctr} %自定义新计数器
-\newenvironment{publist}{
+\newenvironment{publist}{\wuhao\selectfont
 	\begin{list}{[\arabic{pubctr}]}{
      \usecounter{pubctr}
      \setlength{\leftmargin}{2em}		% 左边界
@@ -200,6 +199,8 @@
 \renewcommand{\lstlistingname}{代码}
 \renewcommand{\thelstlisting}{\arabic{chapter}-\arabic{lstlisting}}
 
+% 上角标形式的参考文献引用格式
+\newcommand{\citeup}[1]{\textsuperscript{\cite{#1}}}
 %======================================== Other ==========================================
 % 避免宏包 hyperref 和 arydshln 不兼容带来的目录链接失效的问题。
 \def\temp{\relax}
